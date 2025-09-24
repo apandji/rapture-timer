@@ -63,6 +63,14 @@
         }
         tick();
         setInterval(tick, 1000);
+        
+        // Umami custom event tracking
+        if (typeof umami !== 'undefined') {
+          umami.track('rapture-timer-visited', {
+            rapture_date: '2025-09-23',
+            timestamp: new Date().toISOString()
+          });
+        }
       });
     })();
   </script>
@@ -71,7 +79,7 @@
 <h2>Rapture Timer 2025</h2>
 <img src="Buddy_christ.jpg"></img>
  <main class="line">It's been <span id="timer">0 seconds</span> since the rapture.</main>
- <p><a href="https://www.washingtonpost.com/style/2025/09/23/rapturetok-tik-tok-apocalypse/">Joshua Mhlakela predicted</a> that the rapture would happen on September 23rd, 2025.</p>
+ <p><a href="https://www.washingtonpost.com/style/2025/09/23/rapturetok-tik-tok-apocalypse/" onclick="if(typeof umami !== 'undefined') umami.track('washington-post-link-clicked');">Joshua Mhlakela predicted</a> that the rapture would happen on September 23rd, 2025.</p>
 </body>
 </html>
 
