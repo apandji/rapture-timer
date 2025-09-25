@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rapture Timer</title>
+  <title>Rapture Timers</title>
   <!-- Umami -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="dc6d8483-cdd3-4a82-980f-115a3b59b087"></script>
   <style>
@@ -20,6 +20,21 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+    .timer-section {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    
+    .timer-label {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: -8px;
+      opacity: 0.8;
+      text-transform: uppercase;
+      font-family: ui-sans-serif, Helvetica, Arial, sans-serif;
+
+    }
+    
     .line {
       text-align: center;
       font-weight: 600;
@@ -27,12 +42,39 @@
       font-size: clamp(1.6rem, 3.5vw + 1rem, 3.5rem);
       padding: 24px;
     }
+    
+    .line.subdued {
+      color: #666;
+    }
 
     p{
         text-align: center;
         padding: 24px;
     }
-    #timer { font-weight: 700; }
+    #timer1, #timer2 { font-weight: 700; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      background: #e8e8e8;
+      padding: 8px 16px;
+      border-radius: 4px;
+      display: inline-block;
+      transition: all 0.2s ease;
+      border: 1px solid #d0d0d0;
+    }
+    
+    a:hover {
+      background: #d8d8d8;
+      border-color: #b8b8b8;
+      transform: translateY(-1px);
+    }
+    
+    a:active {
+      background: #c8c8c8;
+      border-color: #a8a8a8;
+      transform: translateY(0);
+    }
   </style>
   <script>
     (function() {
@@ -53,13 +95,22 @@
       }
 
       // Sep 23, 2025 in South African UTC
-      const start = new Date('2025-09-23T00:00:00+02:00');
+      const lastRapture = new Date('2025-09-23T00:00:00+02:00');
+      // Jan 1, 2033
+      const nextRapture = new Date('2033-01-01T00:00:00+00:00');
 
       document.addEventListener('DOMContentLoaded', function() {
-        const el = document.getElementById('timer');
+        const lastRaptureEl = document.getElementById('timer1');
+        const nextRaptureEl = document.getElementById('timer2');
+        
         function tick() {
-          const diff = Date.now() - start.getTime();
-          el.textContent = formatDuration(diff);
+          // Last rapture timer - count up from the rapture date
+          const lastRaptureDiff = Date.now() - lastRapture.getTime();
+          lastRaptureEl.textContent = formatDuration(lastRaptureDiff);
+          
+          // Next rapture timer - count down to 2033
+          const nextRaptureDiff = nextRapture.getTime() - Date.now();
+          nextRaptureEl.textContent = formatDuration(nextRaptureDiff);
         }
         tick();
         setInterval(tick, 1000);
@@ -68,6 +119,7 @@
         if (typeof umami !== 'undefined') {
           umami.track('rapture-timer-visited', {
             rapture_date: '2025-09-23',
+            next_rapture_date: '2033-01-01',
             timestamp: new Date().toISOString()
           });
         }
@@ -75,11 +127,22 @@
     })();
   </script>
 </head>
+<header>
+  <h1>Rapture Timer</h1>
+</header>
 <body>
-<h2>Rapture Timer 2025</h2>
 <img src="Buddy_christ.jpg"></img>
- <main class="line">It's been <span id="timer">0 seconds</span> since the rapture.</main>
- <p><a href="https://www.washingtonpost.com/style/2025/09/23/rapturetok-tik-tok-apocalypse/" onclick="if(typeof umami !== 'undefined') umami.track('washington-post-link-clicked');">Joshua Mhlakela predicted</a> that the rapture would happen on September 23rd, 2025.</p>
+<br>
+<hr>
+<div class="timer-section">
+  <div class="timer-label"><a href="https://www.washingtonpost.com/style/2025/09/23/rapturetok-tik-tok-apocalypse/">Last Rapture (9/23/2025)</a></div>
+  <main class="line subdued">It's been <span id="timer1">0 seconds</span> since the last rapture.</main>
+</div>
+
+<div class="timer-section">
+  <div class="timer-label"><a href="https://www.youtube.com/watch?v=cANrz0ZVgeE">Next Rapture (1/1/2033)</a></div>
+  <main class="line">It's <span id="timer2">0 seconds</span> until the next rapture.</main>
+</div>
 </body>
 </html>
 
