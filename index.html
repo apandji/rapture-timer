@@ -54,6 +54,33 @@
         margin-top: -20px;
     }
     #timer1, #timer2 { font-weight: 700; }
+    
+    .support-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffdd00;
+      color: #333;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-family: ui-sans-serif, Helvetica, Arial, sans-serif;
+      box-shadow: 0 4px 12px rgba(255, 221, 0, 0.3);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+    
+    .support-button:hover {
+      background: #ffd700;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 221, 0, 0.4);
+    }
+    
+    .support-button:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(255, 221, 0, 0.3);
+    }
   </style>
   <script>
     (function() {
@@ -121,9 +148,11 @@
   <div class="timer-section">
   <div class="timer-label">Next Rapture</a></div>
   <main class="line">It's <span id="timer2">0 seconds</span> until the next rapture.</main>
-  <p>A letter written by <a href="https://www.patheos.com/blogs/yeshallprosper/2024/02/will-jesus-second-coming-happen-by-2033/">Elder Vaughn J. Featherstone</a> suggests 2033 might be the year it finally happens.</p>
-</div>
-</body>
+   <p>A letter written by <a href="https://www.patheos.com/blogs/yeshallprosper/2024/02/will-jesus-second-coming-happen-by-2033/">Elder Vaughn J. Featherstone</a> suggests 2033 might be the year it finally happens.</p>
+  </div>
+  
+  <a href="https://buymeacoffee.com/pandjico" class="support-button" target="_blank" rel="noopener noreferrer">☕ Support</a>
+  </body>
 </html>
 
 
